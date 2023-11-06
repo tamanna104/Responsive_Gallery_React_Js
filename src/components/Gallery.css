@@ -1,0 +1,149 @@
+/* src/components/Gallery.css */
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 20px;
+  max-width: 900px; /* Adjust the max-width value as per your requirement */
+  margin: 0 auto;
+  overflow: hidden;
+  border: 2px solid #ccc; /* Border color and width */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  grid-auto-rows: minmax(160px, auto); /* Set minimum row height */
+
+  /* Additional styles to make the first container larger */
+  &  .image-container:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+}
+
+.image-container {
+  width: 100%;
+  height: 100%; /* Maintain aspect ratio (1:1 for square containers, adjust as needed) */
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #ccc; /* Border color and width */
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  
+}
+
+.image-checkbox {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  display: none; /* Initially hidden */
+  width: 20px; /* Set the width to make the checkbox wider */
+  height: 20px; /* Set the height to make the checkbox taller */
+}
+
+.image-container:hover .image-checkbox,
+.image-container.checked .image-checkbox {
+  display: block; /* Show checkbox on hover and when checked */
+}
+
+.image-container.checked .image-overlay-checkbox {
+  opacity: 1;
+}
+
+.image-overlay-checkbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.627); /* Semi-transparent black overlay */
+  opacity: 0; /* Initially invisible */
+  transition: opacity 0.3s ease; /* Smooth transition for overlay */
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  opacity: 0; /* Initially invisible */
+  transition: opacity 0.3s ease; /* Smooth transition for overlay */
+}
+
+.image-container:hover .image-overlay {
+  opacity: 1; /* Make the overlay visible on hover */
+}
+
+.draggable-content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 8px;
+  background-color: #ccc; /* Set a background color for the container */
+  transition: all 0.3s ease;
+  pointer-events: none; /* Disable pointer events to enable dragging */
+}
+
+.draggable-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease; /* Add transition for the image */
+}
+
+.image-container.dragging .draggable-content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0.8; /* Lower opacity when dragged */
+}
+
+
+.gallery-image {
+  width: 100%;
+  height: 100%; /* Fill the container */
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.action-bar {
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  max-width: 900px; /* Adjust the max-width as needed */
+  margin: 0 auto;
+  margin-top: 15px;
+  border: 2px solid #ccc; /* Border color and width */
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top: 1px solid #ccc; 
+}
+.selected-count {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.delete-button {
+  background-color: #ff0000; /* Choose your desired background color */
+  color: #ffffff; /* Choose your desired text color */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.delete-button:hover {
+  background-color: #cc0000; /* Change background color on hover */
+}
